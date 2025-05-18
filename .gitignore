@@ -58,8 +58,6 @@ settings.json
 *.pdf
 all
 
-bureaucrat
-jardin_shrubbery
 base
 serializer
 scalarconverter
