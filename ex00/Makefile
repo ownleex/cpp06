@@ -6,11 +6,11 @@
 #    By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 22:07:14 by ayarmaya          #+#    #+#              #
-#    Updated: 2025/05/19 01:51:30 by ayarmaya         ###   ########.fr        #
+#    Updated: 2025/05/19 21:09:16 by ayarmaya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			:= scalarconverter
+NAME			:= convert
 CC				:= c++
 CFLAGS			:= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 LDFLAGS			:= -Wall -Wextra -Werror -std=c++98 -MMD -MP
