@@ -6,14 +6,14 @@
 #    By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 22:07:14 by ayarmaya          #+#    #+#              #
-#    Updated: 2025/05/18 22:57:34 by ayarmaya         ###   ########.fr        #
+#    Updated: 2025/05/19 01:51:48 by ayarmaya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= base
 CC				:= c++
 CFLAGS			:= -Wall -Wextra -Werror -std=c++98 -MMD -MP
-LDFLAGS			:= -std=c++98 -MMD -MP
+LDFLAGS			:= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 RM				:= rm -f
 RMDIR 			:= rm -rf
 INCDIR 			:= include

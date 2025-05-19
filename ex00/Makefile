@@ -6,14 +6,14 @@
 #    By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 22:07:14 by ayarmaya          #+#    #+#              #
-#    Updated: 2025/05/18 22:55:31 by ayarmaya         ###   ########.fr        #
+#    Updated: 2025/05/19 01:51:30 by ayarmaya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= scalarconverter
 CC				:= c++
 CFLAGS			:= -Wall -Wextra -Werror -std=c++98 -MMD -MP
-LDFLAGS			:= -std=c++98 -MMD -MP
+LDFLAGS			:= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 RM				:= rm -f
 RMDIR 			:= rm -rf
 INCDIR 			:= include
