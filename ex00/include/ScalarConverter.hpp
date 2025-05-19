@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:25 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/18 21:41:18 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/19 17:19:43 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ private:
 
     // Méthodes statiques privées pour la détection et conversion
     static Type detectType(const std::string &literal);
-    static void convertToChar(double value, bool impossible);
-    static void convertToInt(double value, bool impossible);
-    static void convertToFloat(double value, bool impossible);
-    static void convertToDouble(double value, bool impossible);
+    static void convertToChar(double value, bool notPossible);
+    static void convertToInt(double value, bool notPossible);
+    static void convertToFloat(double value, bool notPossible);
+    static void convertToDouble(double value, bool notPossible);
     static bool isPseudoLiteral(const std::string &literal);
 
 public:
