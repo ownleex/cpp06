@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.cpp                                           :+:      :+:    :+:   */
+/*   C.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/18 22:58:41 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/20 22:20:19 by ayarmaya         ###   ########.fr       */
+/*   Created: 2025/05/20 21:48:03 by ayarmaya          #+#    #+#             */
+/*   Updated: 2025/05/20 21:52:41 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+#ifndef C_HPP
+#define C_HPP
 
-// Implémentation du destructeur de Base
-Base::~Base() {}
+# include "Base.hpp"
+
+class C : public Base {};
+
+#endif
