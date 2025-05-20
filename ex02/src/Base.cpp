@@ -6,14 +6,10 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:58:41 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/20 22:20:19 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/20 22:53:04 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
 
-// Implémentation du destructeur de Base
 Base::~Base() {}
