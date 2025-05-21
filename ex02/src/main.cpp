@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:58:54 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/22 01:13:28 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/22 01:34:54 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int main() {
     // Générer une instance aléatoire
     Base* instance = generate();
     
-    std::cout << "\nIdentification par pointeur: ";
+    std::cout << "Identification par pointeur: ";
     identify(instance);
     
     std::cout << "Identification par référence: ";
