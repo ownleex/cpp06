@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/19 17:24:55 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/21 04:18:20 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string &literal) {
     if (literal.length() == 1 && !isdigit(literal[0]))
         return CHAR;
 
+
     // Vérifie si c'est un int
     bool isInteger = true;
     size_t i = 0;
@@ -56,6 +57,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string &literal) {
     
     if (isInteger)
         return INT;
+
 
     // Vérifie si c'est un float
     bool isFloat = true;
@@ -88,6 +90,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string &literal) {
     
     if (isFloat && hasF)
         return FLOAT;
+
 
     // Vérifie si c'est un double
     bool isDouble = true;
@@ -199,7 +202,7 @@ void ScalarConverter::convert(const std::string &literal) {
     double value = 0.0;
     bool notPossible = false;
 
-    // Conversion selon le type détecté
+    // Conversion en double selon le type détecté
     switch (type) {
         case CHAR:
             value = static_cast<double>(literal[0]);
@@ -231,7 +234,7 @@ void ScalarConverter::convert(const std::string &literal) {
             break;
     }
 
-    // Affichage des conversions
+    // Conversions dans les différents types et affichage
     convertToChar(value, notPossible);
     convertToInt(value, notPossible);
     convertToFloat(value, notPossible);
