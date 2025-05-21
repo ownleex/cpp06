@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:58:54 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/20 23:46:00 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/22 00:40:25 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 // Fonction pour identifier le type réel via un pointeur
 void identify(Base* p) {
     // Utiliser dynamic_cast et vérifier si le résultat est NULL
+    // sur pointeur il renvoie NULL en cas d'echec
+    // dynamic_cast car il gere le polymorphisme de class
     if (dynamic_cast<A*>(p))
         std::cout << "A" << std::endl;
 
@@ -36,7 +38,8 @@ void identify(Base* p) {
 // Fonction pour identifier le type réel via une référence
 void identify(Base& p) {
     // Utiliser dynamic_cast et capturer les exceptions
-    // car dynamic_cast sur référence lance une exception std::bad_cast en cas d'échec
+    // car sur référence il lance une exception std::bad_cast en cas d'échec
+    // dynamic_cast car il gere le polymorphisme de class
     try {
         (void)dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
@@ -61,7 +64,7 @@ void identify(Base& p) {
 // Fonction pour générer aléatoirement une instance de A, B ou C
 Base* generate(void) {
     // Initialiser le générateur de nombres aléatoires
-    std::srand(static_cast<unsigned int>(std::time(NULL)));
+    std::srand(std::time(NULL));
     
     // Générer un nombre aléatoire entre 0 et 2
     int random = std::rand() % 3;
