@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/21 23:39:37 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/22 00:17:55 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,13 +145,12 @@ void ScalarConverter::convertToChar(double value, bool notPossible) {
 // Méthode pour convertir en int
 void ScalarConverter::convertToInt(double value, bool notPossible) {
     std::cout << "int: ";
-    int intValue = static_cast<int>(value);
-    if (notPossible || std::isnan(intValue) || std::isinf(intValue)) {
+    if (notPossible || std::isnan(value) || std::isinf(value)) {
         std::cout << "impossible" << std::endl;
-    } else if (intValue > std::numeric_limits<int>::max() || intValue < std::numeric_limits<int>::min()) {
+    } else if (value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min()) {
         std::cout << "impossible" << std::endl;
     } else {
-        std::cout << intValue << std::endl;
+        std::cout << static_cast<int>(value) << std::endl;
     }
 }
 
