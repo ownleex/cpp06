@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/21 04:18:20 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:27:55 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,9 @@ void ScalarConverter::convert(const std::string &literal) {
     double value = 0.0;
     bool notPossible = false;
 
-    // Conversion en double selon le type détecté
+    // Conversion dans le type détécté puis en double car c'est le type le plus précis
+    // avec static_cast car c'est la methode approprié
+    // entre types scalaires (cast verifié à la compilation)
     switch (type) {
         case CHAR:
             value = static_cast<double>(literal[0]);
