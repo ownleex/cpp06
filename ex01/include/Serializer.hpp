@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:54:02 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/18 22:54:04 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:03:47 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ private:
 
 public:
     // Méthode pour sérialiser un pointeur vers Data en uintptr_t
+    // static permet d'appeler la methode sans instanciation
     static uintptr_t serialize(Data* ptr);
     
     // Méthode pour désérialiser un uintptr_t en pointeur vers Data
+    // static permet d'appeler la methode sans instanciation
     static Data* deserialize(uintptr_t raw);
 };
 

@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/21 16:27:55 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/21 23:39:37 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,32 +145,34 @@ void ScalarConverter::convertToChar(double value, bool notPossible) {
 // Méthode pour convertir en int
 void ScalarConverter::convertToInt(double value, bool notPossible) {
     std::cout << "int: ";
-    if (notPossible || std::isnan(value) || std::isinf(value)) {
+    int intValue = static_cast<int>(value);
+    if (notPossible || std::isnan(intValue) || std::isinf(intValue)) {
         std::cout << "impossible" << std::endl;
-    } else if (value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min()) {
+    } else if (intValue > std::numeric_limits<int>::max() || intValue < std::numeric_limits<int>::min()) {
         std::cout << "impossible" << std::endl;
     } else {
-        std::cout << static_cast<int>(value) << std::endl;
+        std::cout << intValue << std::endl;
     }
 }
 
 // Méthode pour convertir en float
 void ScalarConverter::convertToFloat(double value, bool notPossible) {
     std::cout << "float: ";
+    float floatValue = static_cast<float>(value);
     if (notPossible) {
         std::cout << "impossible" << std::endl;
-    } else if (std::isnan(value)) {
+    } else if (std::isnan(floatValue)) {
         std::cout << "nanf" << std::endl;
-    } else if (std::isinf(value) && value > 0) {
+    } else if (std::isinf(floatValue) && floatValue > 0) {
         std::cout << "inff" << std::endl;
-    } else if (std::isinf(value) && value < 0) {
+    } else if (std::isinf(floatValue) && floatValue < 0) {
         std::cout << "-inff" << std::endl;
     } else {
         // Vérifier si la valeur est un entier pour décider d'afficher .0f ou non
-        if (value == static_cast<int>(value)) {
-            std::cout << value << ".0f" << std::endl;
+        if (floatValue == static_cast<int>(floatValue)) {
+            std::cout << floatValue << ".0f" << std::endl;
         } else {
-            std::cout << value << "f" << std::endl;
+            std::cout << floatValue << "f" << std::endl;
         }
     }
 }
@@ -203,8 +205,7 @@ void ScalarConverter::convert(const std::string &literal) {
     bool notPossible = false;
 
     // Conversion dans le type détécté puis en double car c'est le type le plus précis
-    // avec static_cast car c'est la methode approprié
-    // entre types scalaires (cast verifié à la compilation)
+    // avec static_cast car c'est la methode appropriée entre types scalaires (cast verifié à la compilation)
     switch (type) {
         case CHAR:
             value = static_cast<double>(literal[0]);
@@ -213,14 +214,24 @@ void ScalarConverter::convert(const std::string &literal) {
             try {
                 value = static_cast<double>(std::stoi(literal));
             } catch (const std::exception &e) {
-                notPossible = true;
+                // En cas d'échec, tente quand même en double
+                try {
+                    value = std::stod(literal);
+                } catch (const std::exception &e) {
+                    notPossible = true;
+                }
             }
             break;
         case FLOAT:
             try {
                 value = static_cast<double>(std::stof(literal));
             } catch (const std::exception &e) {
-                notPossible = true;
+                // En cas d'échec, tente quand même en double
+                try {
+                    value = std::stod(literal);
+                } catch (const std::exception &e) {
+                    notPossible = true;
+                }
             }
             break;
         case DOUBLE:

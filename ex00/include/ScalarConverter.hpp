@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:25 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/19 17:19:43 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:00:30 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ private:
     };
 
     // Méthodes statiques privées pour la détection et conversion
+    // static pour pouvoir être appelée par une methode public static
     static Type detectType(const std::string &literal);
     static void convertToChar(double value, bool notPossible);
     static void convertToInt(double value, bool notPossible);
@@ -51,6 +52,7 @@ private:
 
 public:
     // Méthode statique publique pour la conversion
+    // static permet d'appeler la methode sans instanciation
     static void convert(const std::string &literal);
 };
 

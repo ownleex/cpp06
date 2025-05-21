@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:54:20 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/18 22:54:22 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:56:57 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ Serializer &Serializer::operator=(const Serializer &rhs) {
     return *this;
 }
 
-// Méthode pour sérialiser un pointeur vers Data en uintptr_t
+// Méthode pour sérialiser un pointeur Data en uintptr_t, reinterpret_cast car on veut la valeur en bit du pointeur
+// contrairement à ex00 où on manipulait des valeurs numériques entre types scalaires
 uintptr_t Serializer::serialize(Data* ptr) {
     return reinterpret_cast<uintptr_t>(ptr);
 }
 
-// Méthode pour désérialiser un uintptr_t en pointeur vers Data
+// Méthode pour désérialiser un uintptr_t en pointeur Data, reinterpret_cast car on veut la valeur en bit du pointeur
+// contrairement à ex00 où on manipulait des valeurs numériques entre types scalaires
 Data* Serializer::deserialize(uintptr_t raw) {
     return reinterpret_cast<Data*>(raw);
 }
