@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/22 14:57:00 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/22 23:03:19 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void ScalarConverter::convertToChar(double value, bool notPossible) {
     } else if (value < 0 || value > 127) {
         std::cout << "impossible" << std::endl;
     } else if (value < 32 || value > 126) {
-        std::cout << "non displayable" << std::endl;
+        std::cout << "Non displayable" << std::endl;
     } else {
         char charValue = static_cast<char>(value);
         std::cout << "'" << charValue << "'" << std::endl;
