@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 18:32:45 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:40:17 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,7 +279,7 @@ void ScalarConverter::convert(const std::string& literal) {
 
         case FLOAT: {
             // Suppression du suffixe 'f' ou 'F' pour la conversion
-            std::string fstr = fstr = fstr.substr(0, fstr.length()-1);
+            std::string fstr = literal.substr(0, fstr.length()-1);
                 
             // Conversion sécurisée vers float
             errno = 0;
