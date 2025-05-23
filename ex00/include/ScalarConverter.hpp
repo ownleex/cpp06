@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:25 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 16:41:16 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 23:42:19 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@
 #include <iostream>
 
 class ScalarConverter {
-public:
-    // Le seul point d'entrée public
-    static void convert(const std::string &literal);
-
 private:
     // Constructeur privé pour empêcher l'instanciation
     ScalarConverter();
@@ -52,6 +48,11 @@ private:
     static Type detectType(const std::string &literal);
     static bool isPseudoLiteral(const std::string &literal);
     static void printAll(Type type, bool notPossible, char charValue, int intValue, float floatValue, double doubleValue);
+
+
+public:
+    // Le seul point d'entrée public
+    static void convert(const std::string &literal);
 
 };
 
