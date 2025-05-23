@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 16:38:24 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:48:48 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
     if (isInteger)
         return INT;
 
+    //Vérifie si c'est float
     bool isFloat = true;
     bool hasDecimal = false;
     bool hasF = false;
@@ -194,11 +195,11 @@ void ScalarConverter::convert(const std::string& literal) {
             doubleValue = static_cast<double>(charValue);
             break;
         case INT: {
-            char *end = NULL;
+            char *endPtr = NULL;
             errno = 0;
-            long longValue = std::strtol(literal.c_str(), &end, 10);
+            long longValue = std::strtol(literal.c_str(), &endPtr, 10);
 
-            if (*end != '\0') {
+            if (*endPtr != '\0') {
                 notPossible = true; // input non convertible du tout
             } else if (errno == ERANGE || longValue > INT_MAX || longValue < INT_MIN) {
                 // Trop grand pour un int, mais essayons en double
@@ -227,10 +228,10 @@ void ScalarConverter::convert(const std::string& literal) {
             std::string fstr = literal;
             if (fstr[fstr.length()-1] == 'f' || fstr[fstr.length()-1] == 'F')
                 fstr = fstr.substr(0, fstr.length()-1);
-            char *end = NULL;
+            char *endPtr = NULL;
             errno = 0;
-            float temp = std::strtof(fstr.c_str(), &end);
-            if (*end != '\0' || errno == ERANGE) notPossible = true;
+            float temp = std::strtof(fstr.c_str(), &endPtr);
+            if (*endPtr != '\0' || errno == ERANGE) notPossible = true;
             else {
                 floatValue = temp;
                 charValue = static_cast<char>(floatValue);
@@ -240,10 +241,10 @@ void ScalarConverter::convert(const std::string& literal) {
             break;
         }
         case DOUBLE: {
-            char *end = NULL;
+            char *endPtr = NULL;
             errno = 0;
-            double temp = std::strtod(literal.c_str(), &end);
-            if (*end != '\0' || errno == ERANGE) notPossible = true;
+            double temp = std::strtod(literal.c_str(), &endPtr);
+            if (*endPtr != '\0' || errno == ERANGE) notPossible = true;
             else {
                 doubleValue = temp;
                 charValue = static_cast<char>(doubleValue);
