@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 18:40:17 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:53:08 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,12 +228,11 @@ void ScalarConverter::convert(const std::string& literal) {
     // Détection du type du littéral d'entrée
     Type type = detectType(literal);
     
-    // Initialisation des variables pour stocker les valeurs converties
-    bool notPossible = false;    // Flag pour indiquer si une conversion est impossible
-    char charValue = 0;          // Valeur convertie en char
-    int intValue = 0;            // Valeur convertie en int
-    float floatValue = 0.0f;     // Valeur convertie en float
-    double doubleValue = 0.0;    // Valeur convertie en double
+    bool notPossible = false;
+    char charValue = 0;
+    int intValue = 0;
+    float floatValue = 0.0f; 
+    double doubleValue = 0.0;
 
     // Traitement selon le type détecté
     switch (type) {
@@ -263,9 +262,6 @@ void ScalarConverter::convert(const std::string& literal) {
                 } else {
                     // Stockage en double, les conversions char/int seront marquées impossibles
                     floatValue = static_cast<float>(doubleValue);
-                    
-                    // char et int: impossible (géré dans printAll)
-                    notPossible = false;
                 }
             } else {
                 // Conversion réussie, stockage avec static_cast vers les autres types
