@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:25 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 23:42:19 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/24 00:38:01 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ private:
 
 
 public:
-    // Le seul point d'entrée public
+    // Le seul point d'entrée public 
+    // static pour pouvoir etre appelée sans instanciation
     static void convert(const std::string &literal);
 
 };
