@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 18:53:08 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:07:04 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ void ScalarConverter::convert(const std::string& literal) {
 
                 // Si même la conversion en double échoue
                 if (errno == ERANGE) {
-                    notPossible = true; // même double impossible
+                    notPossible = true;
                 } else {
                     // Stockage en double, les conversions char/int seront marquées impossibles
                     floatValue = static_cast<float>(doubleValue);
@@ -275,18 +275,17 @@ void ScalarConverter::convert(const std::string& literal) {
 
         case FLOAT: {
             // Suppression du suffixe 'f' ou 'F' pour la conversion
-            std::string fstr = literal.substr(0, fstr.length()-1);
+            std::string fstr = literal.substr(0, literal.length()-1);
                 
             // Conversion sécurisée vers float
             errno = 0;
-            float temp = std::strtof(fstr.c_str(), NULL);
+            floatValue = std::strtof(fstr.c_str(), NULL);
             
             // Vérification des erreurs de conversion
             if (errno == ERANGE)
                 notPossible = true;
             else {
                 // Conversion réussie, stockage avec static_cast vers les autres types
-                floatValue = temp;
                 charValue = static_cast<char>(floatValue);
                 intValue = static_cast<int>(floatValue);
                 doubleValue = static_cast<double>(floatValue);
@@ -297,14 +296,13 @@ void ScalarConverter::convert(const std::string& literal) {
         case DOUBLE: {
             // Conversion sécurisée vers double
             errno = 0;
-            double temp = std::strtod(literal.c_str(), NULL);
+            doubleValue = std::strtod(literal.c_str(), NULL);
             
             // Vérification des erreurs de conversion
             if (errno == ERANGE)
                 notPossible = true;
             else {
                 // Conversion réussie, stockage avec static_cast vers les autres types
-                doubleValue = temp;
                 charValue = static_cast<char>(doubleValue);
                 intValue = static_cast<int>(doubleValue);
                 floatValue = static_cast<float>(doubleValue);
