@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:25 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 13:43:53 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:41:16 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,28 @@
 #define SCALARCONVERTER_HPP
 
 #include <string>
-#include <iostream>
 #include <cstdlib>
-#include <limits>
-#include <cmath>
 #include <cerrno>
+#include <climits>
+#include <cfloat>
+#include <cmath>
+#include <limits>
+#include <iostream>
 
-class ScalarConverter
-{
+class ScalarConverter {
+public:
+    // Le seul point d'entrée public
+    static void convert(const std::string &literal);
+
 private:
     // Constructeur privé pour empêcher l'instanciation
     ScalarConverter();
     // Destructeur privé
-    ~ScalarConverter();
-    // Constructeur de copie privé
     ScalarConverter(const ScalarConverter &src);
+    // Constructeur de copie privé
+    ScalarConverter& operator=(const ScalarConverter &rhs);
     // Opérateur d'affectation privé
-    ScalarConverter &operator=(const ScalarConverter &rhs);
+    ~ScalarConverter();
 
     // Types possibles pour l'entrée
     enum Type {
@@ -45,16 +50,9 @@ private:
     // Méthodes statiques privées pour la détection et conversion
     // static pour pouvoir être appelée par une methode public static
     static Type detectType(const std::string &literal);
-    static void convertToChar(double value, bool notPossible);
-    static void convertToInt(double value, bool notPossible);
-    static void convertToFloat(double value, bool notPossible);
-    static void convertToDouble(double value, bool notPossible);
     static bool isPseudoLiteral(const std::string &literal);
+    static void printAll(Type type, bool notPossible, char charValue, int intValue, float floatValue, double doubleValue);
 
-public:
-    // Méthode statique publique pour la conversion
-    // static permet d'appeler la methode sans instanciation
-    static void convert(const std::string &literal);
 };
 
 #endif
