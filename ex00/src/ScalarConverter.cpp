@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 16:48:48 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:16:50 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,8 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
     std::cout << std::endl;
 }
 
+// Methode principale pour la conversion dans le type détécté
+// avec static_cast car c'est la methode appropriée entre types scalaires (cast verifié à la compilation)
 void ScalarConverter::convert(const std::string& literal) {
     Type type = detectType(literal);
     bool notPossible = false;
@@ -203,10 +205,10 @@ void ScalarConverter::convert(const std::string& literal) {
                 notPossible = true; // input non convertible du tout
             } else if (errno == ERANGE || longValue > INT_MAX || longValue < INT_MIN) {
                 // Trop grand pour un int, mais essayons en double
-                char *end2 = NULL;
+                char *endPtr = NULL;
                 errno = 0;
-                double temp = std::strtod(literal.c_str(), &end2);
-                if (*end2 != '\0' || errno == ERANGE) {
+                double temp = std::strtod(literal.c_str(), &endPtr);
+                if (*endPtr != '\0' || errno == ERANGE) {
                     notPossible = true; // même double impossible
                 } else {
                     doubleValue = temp;
@@ -231,7 +233,8 @@ void ScalarConverter::convert(const std::string& literal) {
             char *endPtr = NULL;
             errno = 0;
             float temp = std::strtof(fstr.c_str(), &endPtr);
-            if (*endPtr != '\0' || errno == ERANGE) notPossible = true;
+            if (*endPtr != '\0' || errno == ERANGE)
+                notPossible = true;
             else {
                 floatValue = temp;
                 charValue = static_cast<char>(floatValue);
@@ -244,7 +247,8 @@ void ScalarConverter::convert(const std::string& literal) {
             char *endPtr = NULL;
             errno = 0;
             double temp = std::strtod(literal.c_str(), &endPtr);
-            if (*endPtr != '\0' || errno == ERANGE) notPossible = true;
+            if (*endPtr != '\0' || errno == ERANGE)
+                notPossible = true;
             else {
                 doubleValue = temp;
                 charValue = static_cast<char>(doubleValue);
