@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 14:13:18 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:33:39 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string &literal) {
             }
             hasDecimalPoint = true;
         } else if (literal[i] == 'f' || literal[i] == 'F') {
-            if (i != literal.length() - 1 || !hasDecimalPoint || hasF) {
+            if (i != literal.length() - 1 || hasF) {
                 isFloat = false;
                 break;
             }
@@ -156,43 +156,58 @@ void ScalarConverter::convertToInt(double value, bool notPossible) {
     }
 }
 
-// Méthode pour convertir en float
+// Méthode pour convertir en float - VERSION CORRIGÉE
 void ScalarConverter::convertToFloat(double value, bool notPossible) {
     std::cout << "float: ";
-    float floatValue = static_cast<float>(value);
     if (notPossible) {
         std::cout << "impossible" << std::endl;
-    } else if (std::isnan(floatValue)) {
+        return;
+    }
+    
+    float floatValue = static_cast<float>(value);
+    
+    if (std::isnan(floatValue)) {
         std::cout << "nanf" << std::endl;
-    } else if (std::isinf(floatValue) && floatValue > 0) {
-        std::cout << "inff" << std::endl;
-    } else if (std::isinf(floatValue) && floatValue < 0) {
-        std::cout << "-inff" << std::endl;
+    } else if (std::isinf(floatValue)) {
+        if (floatValue > 0)
+            std::cout << "inff" << std::endl;
+        else
+            std::cout << "-inff" << std::endl;
     } else {
-        // Vérifier si la valeur est un entier pour décider d'afficher .0f ou non
-        if (floatValue == static_cast<int>(floatValue)) {
-            std::cout << floatValue << ".0f" << std::endl;
+        // Améliorer l'affichage pour préserver la précision quand c'est possible
+        std::cout.precision(7); // Précision par défaut pour float
+        
+        // Vérifier si c'est un nombre entier
+        if (floatValue == static_cast<int>(floatValue) && floatValue >= std::numeric_limits<int>::min() && floatValue <= std::numeric_limits<int>::max()) {
+            std::cout << static_cast<int>(floatValue) << ".0f" << std::endl;
         } else {
             std::cout << floatValue << "f" << std::endl;
         }
     }
 }
 
-// Méthode pour convertir en double
+// Méthode pour convertir en double - VERSION CORRIGÉE
 void ScalarConverter::convertToDouble(double value, bool notPossible) {
     std::cout << "double: ";
     if (notPossible) {
         std::cout << "impossible" << std::endl;
-    } else if (std::isnan(value)) {
+        return;
+    }
+    
+    if (std::isnan(value)) {
         std::cout << "nan" << std::endl;
-    } else if (std::isinf(value) && value > 0) {
-        std::cout << "inf" << std::endl;
-    } else if (std::isinf(value) && value < 0) {
-        std::cout << "-inf" << std::endl;
+    } else if (std::isinf(value)) {
+        if (value > 0)
+            std::cout << "inf" << std::endl;
+        else
+            std::cout << "-inf" << std::endl;
     } else {
-        // Vérifier si la valeur est un entier pour décider d'afficher .0 ou non
-        if (value == static_cast<int>(value)) {
-            std::cout << value << ".0" << std::endl;
+        // Améliorer l'affichage pour préserver la précision
+        std::cout.precision(15); // Précision par défaut pour double
+        
+        // Vérifier si c'est un nombre entier
+        if (value == static_cast<int>(value) && value >= std::numeric_limits<int>::min() && value <= std::numeric_limits<int>::max()) {
+            std::cout << static_cast<int>(value) << ".0" << std::endl;
         } else {
             std::cout << value << std::endl;
         }
