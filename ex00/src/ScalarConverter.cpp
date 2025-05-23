@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 14:00:12 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:13:18 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,14 @@ void ScalarConverter::convert(const std::string &literal) {
                 long longValue = std::strtol(literal.c_str(), &endPtr, 10);
                 if (*endPtr != '\0') {
                     notPossible = true;
+                } else if (errno == ERANGE || longValue > std::numeric_limits<int>::max() ||  longValue < std::numeric_limits<int>::min()) {
+                    // Le nombre est trop grand pour un int, mais on peut quand même
+                    // essayer de le convertir en double pour les autres types
+                    errno = 0;
+                    value = std::strtod(literal.c_str(), &endPtr);
+                    if (errno == ERANGE) {
+                        notPossible = true;
+                    }
                 } else {
                     value = static_cast<double>(longValue);
                 }
