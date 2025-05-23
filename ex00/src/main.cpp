@@ -6,11 +6,11 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:31:18 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 15:29:47 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:52:58 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>          // <-- indispensable pour std::cout / std::endl
+#include <iostream>
 #include <string>  
 #include "ScalarConverter.hpp"
 

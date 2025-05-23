@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 20:06:34 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 22:03:12 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
 
 // Méthode principale pour la conversion dans le type détecté
 // Utilise static_cast car c'est la méthode appropriée entre types scalaires
+// vérifié à la compilation
 void ScalarConverter::convert(const std::string& literal) {
     // Détection du type du littéral d'entrée
     Type type = detectType(literal);

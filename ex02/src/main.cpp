@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:58:54 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 17:21:47 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 22:05:36 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 void identify(Base* p) {
     // Utiliser dynamic_cast et vérifier si le résultat est NULL
     // sur pointeur il renvoie NULL en cas d'echec
-    // dynamic_cast car il gere le polymorphisme de class
+    // dynamic_cast car il gere le polymorphisme de class, vérifié à l'éxécution
     if (dynamic_cast<A*>(p) != NULL)
         std::cout << "A" << std::endl;
 
@@ -39,7 +39,7 @@ void identify(Base* p) {
 void identify(Base& p) {
     // Utiliser dynamic_cast et capturer les exceptions
     // car sur référence il lance une exception std::bad_cast en cas d'échec
-    // dynamic_cast car il gere le polymorphisme de class
+    // dynamic_cast car il gere le polymorphisme de class, vérifié à l'éxécution
     try {
         (void)dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
