@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/22 23:03:19 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:00:12 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,35 +212,40 @@ void ScalarConverter::convert(const std::string &literal) {
             value = static_cast<double>(literal[0]);
             break;
         case INT:
-            try {
-                value = static_cast<double>(std::stoi(literal));
-            } catch (const std::exception &e) {
-                // En cas d'échec, tente quand même en double
-                try {
-                    value = std::stod(literal);
-                } catch (const std::exception &e) {
+            {
+                char *endPtr = NULL;
+                errno = 0;
+                long longValue = std::strtol(literal.c_str(), &endPtr, 10);
+                if (*endPtr != '\0') {
                     notPossible = true;
+                } else {
+                    value = static_cast<double>(longValue);
                 }
             }
             break;
         case FLOAT:
-            try {
-                value = static_cast<double>(std::stof(literal));
-            } catch (const std::exception &e) {
-                // En cas d'échec, tente quand même en double
-                try {
-                    value = std::stod(literal);
-                } catch (const std::exception &e) {
+            {
+                char *endPtr = NULL;
+                errno = 0;
+                float floatValue = std::strtof(literal.c_str(), &endPtr);
+                if (*endPtr != 'f' && *endPtr != 'F') {
                     notPossible = true;
+                } else if (errno == ERANGE) {
+                    notPossible = true;
+                } else {
+                    value = static_cast<double>(floatValue);
                 }
             }
             break;
         case DOUBLE:
         case PSEUDOLITERAL:
-            try {
-                value = std::stod(literal);
-            } catch (const std::exception &e) {
-                notPossible = true;
+            {
+                char *endPtr = NULL;
+                errno = 0;
+                value = std::strtod(literal.c_str(), &endPtr);
+                if (*endPtr != '\0' || (errno == ERANGE && !std::isinf(value))) {
+                    notPossible = true;
+                }
             }
             break;
         case INVALID:

@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:25 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/21 17:00:30 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:43:53 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <cstdlib>
 #include <limits>
 #include <cmath>
+#include <cerrno>
 
 class ScalarConverter
 {
