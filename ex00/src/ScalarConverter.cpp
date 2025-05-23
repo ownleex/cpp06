@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 22:03:12 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 22:33:48 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,10 +284,16 @@ void ScalarConverter::convert(const std::string& literal) {
             errno = 0;
             floatValue = std::strtof(fstr.c_str(), NULL);
             
-            // Vérification des erreurs de conversion
-            if (errno == ERANGE)
-                notPossible = true;
-            else {
+            // Vérification des erreurs de conversion pour float
+            if (errno == ERANGE) {
+                // Si le float est en overflow, essayer en double
+                errno = 0;
+                doubleValue = std::strtod(fstr.c_str(), NULL);
+                
+                // Si le double est aussi en overflow, alors tout est impossible
+                if (errno == ERANGE) 
+                    notPossible = true;
+            } else {
                 // Conversion réussie, stockage avec static_cast vers les autres types
                 charValue = static_cast<char>(floatValue);
                 intValue = static_cast<int>(floatValue);
