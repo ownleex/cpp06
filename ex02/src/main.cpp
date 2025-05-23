@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:58:54 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/22 01:34:54 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:21:47 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ void identify(Base& p) {
         (void)dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
         return;
-    } catch (std::bad_cast&) {}
+    } catch (...) {}
     
     try {
         (void)dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
         return;
-    } catch (std::bad_cast&) {}
+    } catch (...) {}
     
     try {
         (void)dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
         return;
-    } catch (std::bad_cast&) {}
+    } catch (...) {}
     
     std::cout << "Type inconnu" << std::endl;
 }
