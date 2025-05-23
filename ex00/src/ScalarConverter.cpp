@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 14:33:39 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:45:10 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,15 +248,18 @@ void ScalarConverter::convert(const std::string &literal) {
             break;
         case FLOAT:
             {
+                // CORRECTION : Pour les floats, on convertit d'abord en double directement
+                // en enlevant le suffixe 'f' pour éviter la perte de précision
+                std::string floatStr = literal;
+                if (floatStr[floatStr.length() - 1] == 'f' || floatStr[floatStr.length() - 1] == 'F') {
+                    floatStr = floatStr.substr(0, floatStr.length() - 1);
+                }
+                
                 char *endPtr = NULL;
                 errno = 0;
-                float floatValue = std::strtof(literal.c_str(), &endPtr);
-                if (*endPtr != 'f' && *endPtr != 'F') {
+                value = std::strtod(floatStr.c_str(), &endPtr);
+                if (*endPtr != '\0' || errno == ERANGE) {
                     notPossible = true;
-                } else if (errno == ERANGE) {
-                    notPossible = true;
-                } else {
-                    value = static_cast<double>(floatValue);
                 }
             }
             break;
