@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/24 02:07:40 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/24 02:37:54 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,23 +250,27 @@ void ScalarConverter::convert(const std::string& literal) {
         case INT: {
             // Conversion sécurisée d'une chaîne vers long pour vérifier les débordements
             long longValue = std::strtol(literal.c_str(), NULL, 10);
-
+            
             // Vérification des débordements ou valeurs hors limites d'un int
             if (errno == ERANGE || longValue > INT_MAX || longValue < INT_MIN) {
-                // Si trop grand pour un int, on essaie en double
+                // Si trop grand pour un int, on essaie en float d'abord
                 errno = 0;
-                doubleValue = std::strtod(literal.c_str(), NULL);
-
-                // Si echec en double alors tout est impossible
+                floatValue = std::strtof(literal.c_str(), NULL);
+                
                 if (errno == ERANGE) {
-                    notPossible = true;
+                    // Si le float déborde, on essaie en double
+                    errno = 0;
+                    doubleValue = std::strtod(literal.c_str(), NULL);
+                    
+                    if (errno == ERANGE)
+                        // Si même le double déborde, tout est impossible
+                        notPossible = true;
                 } 
                 else {
-                    // sinon stockage egalement du float, les conversions char/int seront marquées impossibles par printAll
-                    floatValue = static_cast<float>(doubleValue);
+                    // Le float fonctionne, on convertit aussi en double
+                    doubleValue = static_cast<double>(floatValue);
                 }
-            } 
-            else {
+            } else {
                 // Conversion réussie, stockage avec static_cast vers les autres types
                 intValue = static_cast<int>(longValue);
                 charValue = static_cast<char>(intValue);
@@ -293,7 +297,8 @@ void ScalarConverter::convert(const std::string& literal) {
                 // Si le double est aussi en overflow, alors tout est impossible
                 if (errno == ERANGE) 
                     notPossible = true;
-            } else {
+            }
+            else {
                 // Conversion réussie, stockage avec static_cast vers les autres types
                 charValue = static_cast<char>(floatValue);
                 intValue = static_cast<int>(floatValue);
