@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/24 02:37:54 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/24 02:40:34 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,7 +270,8 @@ void ScalarConverter::convert(const std::string& literal) {
                     // Le float fonctionne, on convertit aussi en double
                     doubleValue = static_cast<double>(floatValue);
                 }
-            } else {
+            } 
+            else {
                 // Conversion réussie, stockage avec static_cast vers les autres types
                 intValue = static_cast<int>(longValue);
                 charValue = static_cast<char>(intValue);
