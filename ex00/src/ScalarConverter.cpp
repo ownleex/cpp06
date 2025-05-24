@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 22:33:48 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/24 02:07:40 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
 
         // Si le float est un nombre entier, affichage avec .0f
         if (floatValue == static_cast<int>(floatValue))
-            std::cout << static_cast<int>(floatValue) << ".0f";
+            std::cout << floatValue << ".0f";
 
         // Sinon affichage normal avec le suffixe f
         else
@@ -213,7 +213,7 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
 
         // Si le double est un nombre entier, affichage avec .0
         if (doubleValue == static_cast<int>(doubleValue))
-            std::cout << static_cast<int>(doubleValue) << ".0";
+            std::cout << doubleValue << ".0";
             
         // Sinon affichage normal
         else
