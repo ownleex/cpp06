@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/24 02:40:34 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/26 22:40:49 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,11 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
     return INVALID;
 }
 
-bool ScalarConverter::isPseudoLiteral(const std::string& s) {
-    return s == "nan" || s == "nanf" || 
-           s == "+inf" || s == "+inff" || 
-           s == "-inf" || s == "-inff" || 
-           s == "inf" || s == "inff";
+bool ScalarConverter::isPseudoLiteral(const std::string& literal) {
+    return literal == "nan" || literal == "nanf" || 
+           literal == "+inf" || literal == "+inff" || 
+           literal == "-inf" || literal == "-inff" || 
+           literal == "inf" || literal == "inff";
 }
 
 // Méthode pour afficher tous les types de conversion avec gestion des cas impossibles
@@ -248,7 +248,7 @@ void ScalarConverter::convert(const std::string& literal) {
             break;
             
         case INT: {
-            // Conversion sécurisée d'une chaîne vers long pour vérifier les débordements
+            // Conversion d'une chaîne vers long pour vérifier les débordements
             long longValue = std::strtol(literal.c_str(), NULL, 10);
             
             // Vérification des débordements ou valeurs hors limites d'un int
