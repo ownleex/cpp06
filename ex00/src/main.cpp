@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:31:18 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/26 19:55:46 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/27 23:52:44 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    ScalarConverter::convert(argv[1]);
+    std::string literal = argv[1];
+    
+    ScalarConverter::convert(literal);
 
     return 0;
 }
