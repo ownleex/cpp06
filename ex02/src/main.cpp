@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:58:54 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/27 01:08:19 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/27 01:42:46 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ void identify(Base& p) {
     // car sur référence il lance une exception std::bad_cast en cas d'échec
     // dynamic_cast car il gere le polymorphisme de class, vérifié à l'éxécution
     try {
-        dynamic_cast<A&>(p);
+        (void)dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
         return;
     } catch (...) {}
     
     try {
-        dynamic_cast<B&>(p);
+        (void)dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
         return;
     } catch (...) {}
     
     try {
-        dynamic_cast<C&>(p);
+        (void)dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
         return;
     } catch (...) {}
