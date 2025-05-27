@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:54:20 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/23 22:04:53 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/28 00:09:01 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 // Constructeur privé
 Serializer::Serializer() {}
 
-// Destructeur privé
-Serializer::~Serializer() {}
-
 // Constructeur de copie privé
 Serializer::Serializer(const Serializer &src) {
     (void)src;
 }
+
+// Destructeur privé
+Serializer::~Serializer() {}
 
 // Opérateur d'affectation privé
 Serializer &Serializer::operator=(const Serializer &rhs) {

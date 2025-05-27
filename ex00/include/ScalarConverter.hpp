@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:25 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/26 19:51:55 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/28 00:08:29 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@
 
 class ScalarConverter {
 private:
+
     // Constructeur privé pour empêcher l'instanciation
     ScalarConverter();
-    // Destructeur privé
-    ScalarConverter(const ScalarConverter &src);
+
     // Constructeur de copie privé
-    ScalarConverter& operator=(const ScalarConverter &rhs);
+    ScalarConverter(const ScalarConverter &src);
+
     // Opérateur d'affectation privé
+    ScalarConverter& operator=(const ScalarConverter &rhs);
+    
+    // Destructeur privé
     ~ScalarConverter();
 
     // Types possibles pour l'entrée
