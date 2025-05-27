@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/28 00:05:13 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/28 01:04:55 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
         return PSEUDOLITERAL;
 
     // Si c'est un seul caractère et non un chiffre, c'est un char
-    if (literal.length() == 1 && !isdigit(literal[0]))
+    if (literal.length() == 1 && !std::isdigit(literal[0]))
         return CHAR;
 
     // Vérifie si c'est un int
@@ -48,7 +48,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
         i++;
 
     for (; i < literal.length(); i++) {
-        if (!isdigit(literal[i])) { 
+        if (!std::isdigit(literal[i])) { 
             isInteger = false; 
             break;
         }
@@ -80,7 +80,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
                 break;
             }
             hasF = true;
-        } else if (!isdigit(literal[i])) {
+        } else if (!std::isdigit(literal[i])) {
             isFloat = false;
             break;
         }
@@ -105,7 +105,7 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
                 break;
             }
             hasDecimal = true;
-        } else if (!isdigit(literal[i])) {
+        } else if (!std::isdigit(literal[i])) {
             isDouble = false;
             break;
         }
