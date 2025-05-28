@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:54:02 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/21 17:03:47 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/28 19:25:02 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SERIALIZER_HPP
 
 #include <stdint.h>
+#include <iostream>
 #include "Data.hpp"
 
 class Serializer

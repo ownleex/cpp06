@@ -6,11 +6,10 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:54:36 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/18 22:54:38 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/28 19:24:54 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Serializer.hpp"
 
 int main() {
