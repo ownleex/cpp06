@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/28 01:04:55 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/28 01:36:52 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
     if (isPseudoLiteral(literal))
         return PSEUDOLITERAL;
 
-    // Si c'est un seul caractère et non un chiffre, c'est un char
+
+    // Vérifie si c'est un char
     if (literal.length() == 1 && !std::isdigit(literal[0]))
         return CHAR;
+
 
     // Vérifie si c'est un int
     bool isInteger = true;
     size_t i = 0;
 
-    // Gestion du signe négatif
+        // Gestion du signe 
     if (literal[0] == '-' || literal[0] == '+')
         i++;
 
@@ -57,13 +59,14 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
     if (isInteger)
         return INT;
 
+
     //Vérifie si c'est float
     bool isFloat = true;
     bool hasDecimal = false;
     bool hasF = false;
-
-    // Gestion du signe négatif
     i = 0;
+
+        // Gestion du signe 
     if (literal[0] == '-' || literal[0] == '+')
         i++;
 
@@ -89,12 +92,13 @@ ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
     if (isFloat && hasF)
         return FLOAT;
 
+        
     // Vérifie si c'est un double
     bool isDouble = true;
     hasDecimal = false;
-
     i = 0;
-    // Gestion du signe négatif
+
+        // Gestion du signe 
     if (literal[0] == '-' || literal[0] == '+')
         i++;
 
@@ -128,15 +132,15 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
     // Affichage de la conversion en char
     std::cout << "char: ";
 
-    // Vérification si la conversion est impossible ou si la valeur est hors de la plage ASCII valide (0-127)
+        // Vérification si la conversion est impossible ou si la valeur est hors de la plage ASCII valide (0-127)
     if (notPossible || doubleValue < 0 || doubleValue > 127)
         std::cout << "impossible";
 
-    // Vérification si le caractère n'est pas affichable (codes ASCII < 32 ou > 126)
+        // Vérification si le caractère n'est pas affichable (codes ASCII < 32 ou > 126)
     else if (doubleValue < 32 || doubleValue > 126)
         std::cout << "Non displayable";
         
-    // Affichage du caractère entre guillemets simples
+        // Affichage du caractère entre guillemets simples
     else
         std::cout << "'" << charValue << "'";
     std::cout << std::endl;
@@ -145,11 +149,11 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
     // Affichage de la conversion en int
     std::cout << "int: ";
 
-    // Vérification si la conversion est impossible ou si la valeur dépasse les limites d'un int (INT_MAX/INT_MIN)
+        // Vérification si la conversion est impossible ou si la valeur dépasse les limites d'un int (INT_MAX/INT_MIN)
     if (notPossible || doubleValue > INT_MAX || doubleValue < INT_MIN)
         std::cout << "impossible";
 
-    // Affichage de la valeur entière
+        // Affichage de la valeur entière
     else
         std::cout << intValue;
     std::cout << std::endl;
@@ -157,7 +161,7 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
 
     // Affichage de la conversion en float
     std::cout << "float: ";
-    // Cas spécial pour les pseudo-littéraux (nan, inf, -inf)
+        // Cas spécial pour les pseudo-littéraux (nan, inf, -inf)
     if (type == PSEUDOLITERAL) {
         // Vérification si c'est NaN (Not a Number)
         if (std::isnan(floatValue))
@@ -168,11 +172,11 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
             std::cout << (floatValue > 0 ? "inff" : "-inff");
     } 
 
-    // Si la conversion est impossible pour d'autres raisons
+        // Si la conversion est impossible pour d'autres raisons
     else if (notPossible)
         std::cout << "impossible";
 
-    // Affichage de la valeur
+        // Affichage de la valeur
     else {
         // Configuration de la précision d'affichage
         std::cout.precision(7);
@@ -191,7 +195,7 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
     // Affichage de la conversion en double
     std::cout << "double: ";
 
-    // Cas spécial pour les pseudo-littéraux (nan, inf, -inf)
+        // Cas spécial pour les pseudo-littéraux (nan, inf, -inf)
     if (type == PSEUDOLITERAL) {
         // Vérification si c'est NaN (Not a Number)
         if (std::isnan(doubleValue))
@@ -202,11 +206,11 @@ void ScalarConverter::printAll(Type type, bool notPossible, char charValue, int 
             std::cout << (doubleValue > 0 ? "inf" : "-inf");
     } 
 
-    // Si la conversion est impossible pour d'autres raisons
+        // Si la conversion est impossible pour d'autres raisons
     else if (notPossible)
         std::cout << "impossible";
 
-    // Affichage de la valeur
+        // Affichage de la valeur
     else {
         // Configuration de la précision d'affichage
         std::cout.precision(7);
