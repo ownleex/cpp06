@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 22:58:54 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/27 01:42:46 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/28 19:35:34 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
-
-#include <iostream>
 
 // Fonction pour identifier le type réel via un pointeur
 void identify(Base* p) {
