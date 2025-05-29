@@ -6,7 +6,7 @@
 /*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:30:15 by ayarmaya          #+#    #+#             */
-/*   Updated: 2025/05/28 01:36:52 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2025/05/29 05:05:45 by ayarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,7 @@ void ScalarConverter::convert(const std::string& literal) {
             
         case INT: {
             // Conversion d'une chaîne vers long pour vérifier les débordements
+            errno = 0;
             long longValue = std::strtol(literal.c_str(), NULL, 10);
             
             // Vérification des débordements ou valeurs hors limites d'un int
